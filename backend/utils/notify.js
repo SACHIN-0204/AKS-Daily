@@ -4,13 +4,13 @@ const label = (o) => o.orderNumber || `AB-${String(o._id).slice(-6).toUpperCase(
 
 const MESSAGES = {
     "order-confirmed": (o) =>
-        `Kusora: order ${label(o)} received. Total Rs ${o.totalPrice}.${o.deliverySlot?.label ? ` Delivery: ${o.deliverySlot.label}.` : ""} Thank you!`,
-    "payment-success": (o) => `Kusora: payment of Rs ${o.totalPrice} received for order ${label(o)}.`,
-    "order-cancelled": (o) => `Kusora: order ${label(o)} has been cancelled.`,
-    confirmed: (o) => `Kusora: order ${label(o)} is confirmed and being prepared.`,
-    packed: (o) => `Kusora: order ${label(o)} is packed and will leave soon.`,
-    shipped: (o) => `Kusora: order ${label(o)} is out for delivery. Please keep your phone handy.`,
-    delivered: (o) => `Kusora: order ${label(o)} delivered. Thank you for shopping with us!`,
+        `AKS Daily: order ${label(o)} received. Total Rs ${o.totalPrice}.${o.deliverySlot?.label ? ` Delivery: ${o.deliverySlot.label}.` : ""} Thank you!`,
+    "payment-success": (o) => `AKS Daily: payment of Rs ${o.totalPrice} received for order ${label(o)}.`,
+    "order-cancelled": (o) => `AKS Daily: order ${label(o)} has been cancelled.`,
+    confirmed: (o) => `AKS Daily: order ${label(o)} is confirmed and being prepared.`,
+    packed: (o) => `AKS Daily: order ${label(o)} is packed and will leave soon.`,
+    shipped: (o) => `AKS Daily: order ${label(o)} is out for delivery. Please keep your phone handy.`,
+    delivered: (o) => `AKS Daily: order ${label(o)} delivered. Thank you for shopping with us!`,
 };
 
 // Text message about an order. Never throws and is never awaited by callers:

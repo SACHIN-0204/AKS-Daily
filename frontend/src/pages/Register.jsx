@@ -132,7 +132,7 @@ const Register = () => {
           <p>
             {pendingVerification
               ? "Enter the OTP sent to your email to complete your registration."
-              : "Join Kusora to shop fresh essentials and track your orders with ease."}
+              : "Join AKS Daily to shop fresh essentials and track your orders with ease."}
           </p>
         </div>
 

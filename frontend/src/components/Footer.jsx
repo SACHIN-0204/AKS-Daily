@@ -75,8 +75,9 @@ const Footer = () => {
 
             {/* Footer Bottom */}
             <div className="footer-bottom">
-                <p>&copy; {new Date().getFullYear()} Kusora. {t("footer.rights")}</p>
+                <p>&copy; {new Date().getFullYear()} AKS Daily. {t("footer.rights")}</p>
                 <p className="footer-credits">{t("nav.tagline")}</p>
+                <p className="footer-credits">Powered by Abhishek Kirana Store</p>
             </div>
         </footer>
     )

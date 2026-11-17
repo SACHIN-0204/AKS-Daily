@@ -1,4 +1,4 @@
-# Kusora V3 — Frontend deployment
+# AKS Daily V3 — Frontend deployment
 
 The React frontend can be deployed as a static site/CDN independently of the API.
 

@@ -7,7 +7,7 @@ const Terms = () => {
     return (
         <InfoPage
             title="Terms & Conditions"
-            subtitle="The ground rules for shopping with Kusora."
+            subtitle="The ground rules for shopping with AKS Daily."
             updated={STORE.lastUpdated}
         >
             <p>

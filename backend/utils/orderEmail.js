@@ -29,19 +29,19 @@ const buildOrderEmail = (order, eventType) => {
 
     switch (eventType) {
         case "order-confirmed":
-            subject = "Order confirmed - Kusora";
+            subject = "Order confirmed - AKS Daily";
             heading = "Order confirmed";
             intro = "Thank you for shopping with us. Your order has been received and is now being prepared.";
             highlight = `Order ID: <strong>${orderId}</strong><br />Payment Method: <strong>${paymentMethod}</strong><br />Total Amount: <strong>₹${total}</strong>`;
             break;
         case "payment-success":
-            subject = "Payment successful - Kusora";
+            subject = "Payment successful - AKS Daily";
             heading = "Payment successful";
             intro = "We have received your payment successfully and your order is now moving forward.";
             highlight = `Order ID: <strong>${orderId}</strong><br />Amount Paid: <strong>₹${total}</strong>`;
             break;
         case "order-cancelled":
-            subject = "Order cancelled - Kusora";
+            subject = "Order cancelled - AKS Daily";
             heading = "Order cancelled";
             intro = "Your order has been cancelled as requested. We’re here if you need help.";
             highlight = `Order ID: <strong>${orderId}</strong><br />Cancelled Amount: <strong>₹${total}</strong>`;
@@ -57,7 +57,7 @@ const buildOrderEmail = (order, eventType) => {
       <div style="font-family: Arial, sans-serif; background:#f7f9fc; padding:24px; color:#111827;">
         <div style="max-width:640px; margin:0 auto; background:#ffffff; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden;">
           <div style="background:linear-gradient(135deg, #1f4f3d, #2e7d32); padding:24px 28px; color:#ffffff;">
-            <h2 style="margin:0; font-size:24px;">Kusora</h2>
+            <h2 style="margin:0; font-size:24px;">AKS Daily</h2>
             <p style="margin:6px 0 0; font-size:14px; opacity:0.95;">Fresh essentials, delivered with care</p>
           </div>
           <div style="padding:28px;">
@@ -70,10 +70,10 @@ const buildOrderEmail = (order, eventType) => {
             <ul style="list-style:none; padding:0; margin:0 0 16px;">
               ${formatOrderItems(order)}
             </ul>
-            <p style="margin:0; font-size:14px; color:#6b7280; line-height:1.6;">Thank you for choosing Kusora. We appreciate your trust and look forward to serving you again.</p>
+            <p style="margin:0; font-size:14px; color:#6b7280; line-height:1.6;">Thank you for choosing AKS Daily. We appreciate your trust and look forward to serving you again.</p>
           </div>
           <div style="background:#f9fafb; padding:16px 28px; font-size:12px; color:#6b7280; text-align:center; border-top:1px solid #e5e7eb;">
-            © 2026 Kusora. All rights reserved.
+            © 2026 AKS Daily. All rights reserved.
           </div>
         </div>
       </div>

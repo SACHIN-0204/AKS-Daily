@@ -48,7 +48,7 @@ export const payForOrder = async ({ orderId, token, prefill = {} }) => {
       key: rp.keyId,
       amount: rp.amount,
       currency: rp.currency || "INR",
-      name: "Kusora",
+      name: "AKS Daily",
       description: "Grocery order",
       order_id: rp.id,
       prefill,

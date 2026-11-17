@@ -1,4 +1,4 @@
-# Kusora — Performance V1
+# AKS Daily — Performance V1
 
 ## What changed
 - Added HTTP compression middleware to the Express backend (when applicable).

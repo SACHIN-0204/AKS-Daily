@@ -6,7 +6,7 @@ import "../styles/heroSlider.css";
 const SLIDES = [
     {
         id: "s1",
-        image: "/kusora-banner.jpg",
+        image: "/aks-daily-banner.jpg",
         position: "88% center", // keeps the basket artwork visible on narrow screens
         link: "/shop",
     },

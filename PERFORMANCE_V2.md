@@ -1,4 +1,4 @@
-# Kusora — Performance V2
+# AKS Daily — Performance V2
 
 ## Included
 - Product API supports bounded server-side pagination while preserving the old array response when no pagination is requested.

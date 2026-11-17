@@ -1,4 +1,4 @@
-# Kusora — Performance V3
+# AKS Daily — Performance V3
 
 ## Goal
 Remove the Render Free cold-start from normal customer page loads by separating the static React frontend from the API.

@@ -43,9 +43,9 @@
 /* ================= LOGO ================= */
 
 .navbar-logo {
-    height: 56px;
+    height: 44px;
     width: auto;
-    max-width: 150px;
+    max-width: 200px;
     object-fit: contain;
     transition: .3s;
 }
@@ -187,7 +187,7 @@
     }
 
     .navbar-logo{
-        height:46px;
+        height:36px;
         width:auto;
     }
 
@@ -232,7 +232,7 @@
 }
 
 
-/* ================= KUSORA BRAND TEXT ================= */
+/* ================= AKS DAILY BRAND TEXT ================= */
 
 .brand-text {
     display: flex;
@@ -247,7 +247,7 @@
     text-shadow: none;
 }
 
-.brand-kusora {
+.brand-aks {
     color: #1f8a43;
 }
 
