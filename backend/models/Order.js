@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Fulfilment status (what the store is doing with the order)
-const ORDER_STATUSES = ["pending", "shipped", "delivered", "cancelled"];
+const ORDER_STATUSES = ["pending", "confirmed", "packed", "shipped", "delivered", "cancelled"];
 
 // Payment status (what has happened to the money) - kept separate from fulfilment status
 const PAYMENT_STATUSES = ["pending", "paid", "failed", "refund_pending", "refunded"];

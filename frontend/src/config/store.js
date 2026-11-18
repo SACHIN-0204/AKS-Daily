@@ -8,6 +8,10 @@ export const STORE = {
     phoneHref: "tel:+917489001579",
     address: "Ambamoliya, Indore, Madhya Pradesh, India",
     deliveryFee: 40,
+    // PIN codes we deliver to (display only - the server enforces SERVICE_PINCODES in backend/.env)
+    servicePincodes: ["452001"],
+    defaultCity: "Indore",
+    defaultState: "Madhya Pradesh",
     studentDiscountPercent: 10,
     lastUpdated: "October 22, 2026",
 };

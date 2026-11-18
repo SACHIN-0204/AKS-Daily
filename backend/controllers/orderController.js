@@ -4,6 +4,7 @@ const { ORDER_STATUSES } = require("../models/Order");
 const Product = require("../models/Product");
 const sendEmail = require("../utils/sendEmail");
 const { restoreStock, priceOrder, cancelOrder } = require("../utils/orderService");
+const { isServiceable } = require("../utils/deliverySlots");
 
 const PAYMENT_METHODS = ["Cash on Delivery", "Razorpay"];
 
@@ -129,6 +130,13 @@ const createOrder = async (req, res) => {
             const value = String(address[field] ?? "").trim();
             if (!value) return res.status(400).json({ message: `Address ${field} is required` });
             cleanAddress[field] = value;
+        }
+
+        // Only deliver to PIN codes inside our service area (see SERVICE_PINCODES in config/settings.js)
+        if (!isServiceable(cleanAddress.zipCode)) {
+            return res.status(400).json({
+                message: `Sorry, we do not deliver to PIN code ${cleanAddress.zipCode} yet. We currently deliver only in Indore (PIN 452001).`,
+            });
         }
 
         // 1. Clean the request: validate ids and quantities, merge duplicate products

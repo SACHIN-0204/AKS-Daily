@@ -12,8 +12,9 @@ const Shipping = () => {
         >
             <h2>Delivery area</h2>
             <p>
-                We deliver in and around Indore, Madhya Pradesh. Enter your full address at checkout. If your address is
-                outside our delivery area, we'll contact you to arrange delivery or cancel the order and refund any payment.
+                Our shop is at {STORE.address}. We currently deliver only to PIN code{" "}
+                <strong>{STORE.servicePincodes.join(", ")}</strong> (Indore). Enter your PIN code at checkout and we'll tell
+                you right away whether we can deliver to you. Orders to other PIN codes can't be placed.
             </p>
 
             <h2>Delivery time</h2>

@@ -34,7 +34,7 @@ Full list with comments: `backend/.env.example`. The important ones:
 | `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET` | live keys (`rzp_live_...`) only after test-mode QA passes |
 | `RAZORPAY_WEBHOOK_SECRET` | see section 4 |
 | `SMS_PROVIDER` | `msg91` or `twilio`. With `console`, phone login is disabled in production |
-| `SERVICE_PINCODES` | PIN codes you deliver to (empty = everywhere) |
+| `SERVICE_PINCODES` | PIN codes you deliver to, comma separated. Default `452001` (Indore). Empty = everywhere |
 
 ## 4. Razorpay webhook
 Dashboard > Settings > Webhooks > Add new:

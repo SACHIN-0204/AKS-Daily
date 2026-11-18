@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { clearToCart } from "../redux/cartSlice";
+import { STORE } from "../config/store";
 import "../styles/product.css";
 
 const Checkout = () => {
@@ -14,14 +15,16 @@ const Checkout = () => {
   const [formData, setFormData] = useState({
     fullName: "",
     street: "",
-    city: "",
-    state: "",
+    city: STORE.defaultCity,
+    state: STORE.defaultState,
     zipCode: "",
     paymentMethod: "Cash on Delivery",
   });
   const [studentBypass, setStudentBypass] = useState(false);
   const [studentEmail, setStudentEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  // "" = not checked yet, "checking", "ok" = we deliver there, "no" = outside delivery area, "error" = could not check
+  const [pinStatus, setPinStatus] = useState("");
   const [message, setMessage] = useState({ type: "", text: "" });
 
   const subtotal = cartItems.reduce((total, item) => total + (item.price * (item.quantity || 1)), 0);
@@ -33,6 +36,29 @@ const Checkout = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  // Ask the server whether we deliver to this PIN code as soon as 6 digits are typed
+  useEffect(() => {
+    const pin = formData.zipCode.trim();
+    if (!/^\d{6}$/.test(pin)) {
+      setPinStatus("");
+      return undefined;
+    }
+    let cancelled = false;
+    setPinStatus("checking");
+    fetch(`/api/store/pincode/${pin}`)
+      .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
+      .then(({ ok, data }) => {
+        if (cancelled) return;
+        setPinStatus(ok ? (data.serviceable ? "ok" : "no") : "error");
+      })
+      .catch(() => {
+        if (!cancelled) setPinStatus("error");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [formData.zipCode]);
 
   const authHeaders = () => ({
     "Content-Type": "application/json",
@@ -156,6 +182,19 @@ const Checkout = () => {
       return;
     }
 
+    if (!/^\d{6}$/.test(formData.zipCode.trim())) {
+      setMessage({ type: "error", text: "Please enter a valid 6-digit PIN code." });
+      return;
+    }
+
+    if (pinStatus === "no") {
+      setMessage({
+        type: "error",
+        text: `Sorry, we do not deliver to PIN code ${formData.zipCode.trim()} yet. We currently deliver only to ${STORE.servicePincodes.join(", ")} (Indore).`,
+      });
+      return;
+    }
+
     if (studentBypass && !studentEmail.trim()) {
       setMessage({ type: "error", text: "Please enter your student email to use the student bypass." });
       return;
@@ -223,8 +262,26 @@ const Checkout = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="zipCode">ZIP code</label>
-            <input id="zipCode" name="zipCode" value={formData.zipCode} onChange={handleChange} required />
+            <label htmlFor="zipCode">PIN code</label>
+            <input
+              id="zipCode"
+              name="zipCode"
+              value={formData.zipCode}
+              onChange={handleChange}
+              inputMode="numeric"
+              maxLength={6}
+              pattern="\d{6}"
+              placeholder="e.g. 452001"
+              required
+            />
+            {pinStatus === "checking" && <small>Checking delivery availability...</small>}
+            {pinStatus === "ok" && <small style={{ color: "#15803d" }}>✓ Delivery available at this PIN code</small>}
+            {pinStatus === "no" && (
+              <small style={{ color: "#b91c1c" }}>
+                ✗ Sorry, we don't deliver to this PIN code yet. We deliver to {STORE.servicePincodes.join(", ")} (Indore).
+              </small>
+            )}
+            {pinStatus === "error" && <small>Could not check the PIN code right now. We'll verify it when you place the order.</small>}
           </div>
 
           <div className="form-group">
@@ -254,7 +311,7 @@ const Checkout = () => {
 
           {message.text && <div className={`auth-message ${message.type}`}>{message.text}</div>}
 
-          <button className="view-details-button" type="submit" disabled={loading}>
+          <button className="view-details-button" type="submit" disabled={loading || pinStatus === "no"}>
             {loading ? "Processing..." : "Place order"}
           </button>
         </form>

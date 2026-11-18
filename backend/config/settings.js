@@ -26,8 +26,10 @@ module.exports = {
     STUDENT_EMAIL_SUFFIXES: list(process.env.STUDENT_EMAIL_SUFFIXES, ".ac.in,.edu,.edu.in"),
     // How long an unpaid online order holds the customer's stock.
     PAYMENT_HOLD_MINUTES: num(process.env.PAYMENT_HOLD_MINUTES, 15),
-    // PIN codes we deliver to, comma separated (for example 452001,452002). Empty = deliver everywhere.
-    SERVICE_PINCODES: list(process.env.SERVICE_PINCODES, ""),
+    // PIN codes we deliver to, comma separated (for example 452001,452002).
+    // Default: 452001 (Indore, shop at Ambamoliya). Set SERVICE_PINCODES in .env to override,
+    // or set it to an empty value to deliver everywhere.
+    SERVICE_PINCODES: list(process.env.SERVICE_PINCODES, "452001"),
     // Delivery windows as HH:MM-HH:MM, comma separated, or "off" to switch slots off.
     DELIVERY_SLOTS: String(process.env.DELIVERY_SLOTS ?? "09:00-12:00,12:00-15:00,15:00-18:00,18:00-21:00").trim(),
     // A slot closes this many minutes before it starts (time to pick and pack the order).

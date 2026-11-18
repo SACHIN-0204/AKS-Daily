@@ -47,4 +47,4 @@ services:
       - key: MSG91_ORDER_TEMPLATE_ID
         sync: false
       - key: SERVICE_PINCODES
-        sync: false
+        value: "452001"     # comma separated PIN codes you deliver to

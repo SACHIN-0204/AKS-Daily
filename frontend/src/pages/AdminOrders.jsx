@@ -122,6 +122,8 @@ const AdminOrders = () => {
                     style={{ background: '#f8fafc', color: '#111827', padding: '8px 10px', border: '1px solid #d1d5db', borderRadius: '8px', outline: 'none' }}
                   >
                     <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="packed">Packed</option>
                     <option value="shipped">Shipped</option>
                     <option value="delivered">Delivered</option>
                     <option value="cancelled">Cancelled</option>
